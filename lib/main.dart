@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:animation_experiments/home.dart';
 import 'package:animation_experiments/pages/animation1.dart';
+import 'package:animation_experiments/pages/movingCircles.dart';
 
 void main() => runApp(MyApp());
 
@@ -14,8 +15,8 @@ class MyApp extends StatelessWidget {
       number: 0,
     ),
     Page(
-      route: Animation1(),
-      name: "2nd",
+      route: MovingDots(),
+      name: "Drawing",
       icon: Icons.filter_2,
       number: 1,
     ),

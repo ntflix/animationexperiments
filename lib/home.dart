@@ -57,6 +57,8 @@ class _NavPageState extends State<NavPage> with SingleTickerProviderStateMixin {
     );
 
     animationController.forward();
+
+    this.body = widget.pages[_selectedPage].route;
   }
 
   @override
@@ -92,35 +94,36 @@ class _NavPageState extends State<NavPage> with SingleTickerProviderStateMixin {
             ),
 
            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: widget.pages.map((thisPage) =>
-                InkWell(
-                  onTap: () => setState(() {
-                    _selectedPage = thisPage.number;
-                    this.body = thisPage.route;
-                    animationController.forward();
-                  }),
-                  child : AnimatedOpacity(
-                    duration: Duration(milliseconds: 70),
-                    opacity: _selectedPage == thisPage.number ? 1.0 : 0.5,
-                    child : InkWell(
-                      child : ScaleTransition(
-                        scale: animation,
-                        child: AnimatedContainer(
-                          padding: EdgeInsets.fromLTRB(0, (_selectedPage == thisPage.number ? 10 : 12), 0, 0),
-                          duration: Duration(milliseconds: 150),
-                          height: _selectedPage == thisPage.number ? 40 : 34,
-                          child : FittedBox(
-                            fit: BoxFit.fill,
-                            child: Icon(thisPage.icon),
-                          ),
-                        ),
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: widget.pages.map((thisPage) =>
+              InkWell(
+                splashColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                onTap: () => setState(() {
+                  _selectedPage = thisPage.number;
+                  this.body = thisPage.route;
+                  animationController.forward();
+                }),
+                child : AnimatedOpacity(
+                  duration: Duration(milliseconds: 120),
+                  opacity: _selectedPage == thisPage.number ? 1.0 : 0.5,
+                  child : ScaleTransition(
+                    scale: animation,
+                    child: AnimatedContainer(
+                      padding: EdgeInsets.fromLTRB(1, (_selectedPage == thisPage.number ? 10 : 12), 1, 0),
+                      duration: Duration(milliseconds: 150),
+                      height: _selectedPage == thisPage.number ? 40 : 34,
+                      width: 100,
+                      child : FittedBox(
+                        fit: BoxFit.fitHeight,
+                        child: Icon(thisPage.icon),
                       ),
                     ),
                   ),
                 ),
+              ),
               ).toList()
             ),
           ],
