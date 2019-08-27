@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:animation_experiments/home.dart';
 import 'package:animation_experiments/pages/animation1.dart';
 import 'package:animation_experiments/pages/movingCircles.dart';
+import 'package:animation_experiments/pages/boxes.dart';
 
 void main() => runApp(MyApp());
 
@@ -9,7 +10,8 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   final List<Page> _pages = [
     Page(
-      route: Animation1(),
+//      route: Animation1(),
+      route: Boxes(),
       name: "1st",
       icon: Icons.filter_1,
       number: 0,
@@ -21,10 +23,16 @@ class MyApp extends StatelessWidget {
       number: 1,
     ),
     Page(
-      route: Animation1(),
-      name: "3rd",
+      route: Boxes(),
+      name: "Boxes",
       icon: Icons.filter_3,
       number: 2,
+    ),
+    Page(
+      route: Animation1(),
+      name: "3rd",
+      icon: Icons.filter_4,
+      number: 3,
     )
   ];
 

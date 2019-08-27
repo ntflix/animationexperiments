@@ -94,31 +94,33 @@ class _NavPageState extends State<NavPage> with SingleTickerProviderStateMixin {
             ),
 
            Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: widget.pages.map((thisPage) =>
-              InkWell(
-                splashColor: Colors.transparent,
-                highlightColor: Colors.transparent,
-                onTap: () => setState(() {
-                  _selectedPage = thisPage.number;
-                  this.body = thisPage.route;
-                  animationController.forward();
-                }),
-                child : AnimatedOpacity(
-                  duration: Duration(milliseconds: 120),
-                  opacity: _selectedPage == thisPage.number ? 1.0 : 0.5,
-                  child : ScaleTransition(
-                    scale: animation,
-                    child: AnimatedContainer(
-                      padding: EdgeInsets.fromLTRB(1, (_selectedPage == thisPage.number ? 10 : 12), 1, 0),
-                      duration: Duration(milliseconds: 150),
-                      height: _selectedPage == thisPage.number ? 40 : 34,
-                      width: 100,
-                      child : FittedBox(
-                        fit: BoxFit.fitHeight,
-                        child: Icon(thisPage.icon),
+              Container(
+                child : InkWell(
+                  splashColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  onTap: () => setState(() {
+                    _selectedPage = thisPage.number;
+                    this.body = thisPage.route;
+                    animationController.forward();
+                  }),
+                  child : AnimatedOpacity(
+                    duration: Duration(milliseconds: 120),
+                    opacity: _selectedPage == thisPage.number ? 1.0 : 0.5,
+                    child : ScaleTransition(
+                      scale: animation,
+                      child: AnimatedContainer(
+                        padding: EdgeInsets.fromLTRB(1, (_selectedPage == thisPage.number ? 10 : 12), 1, 0),
+                        duration: Duration(milliseconds: 150),
+                        height: _selectedPage == thisPage.number ? 40 : 34,
+                        width: MediaQuery.of(context).size.width / 4,
+                        child : FittedBox(
+                          fit: BoxFit.fitHeight,
+                          child: Icon(thisPage.icon),
+                        ),
                       ),
                     ),
                   ),
