@@ -56,7 +56,7 @@ class _NavPageState extends State<NavPage> with SingleTickerProviderStateMixin {
       curve: Curves.easeInOut,
     );
 
-    animationController.forward();
+    animationController.forward().orCancel;
 
     this.body = widget.pages[_selectedPage].route;
   }
@@ -105,7 +105,7 @@ class _NavPageState extends State<NavPage> with SingleTickerProviderStateMixin {
                   onTap: () => setState(() {
                     _selectedPage = thisPage.number;
                     this.body = thisPage.route;
-                    animationController.forward();
+                    animationController.forward().orCancel;
                   }),
                   child : AnimatedOpacity(
                     duration: Duration(milliseconds: 120),
@@ -116,7 +116,7 @@ class _NavPageState extends State<NavPage> with SingleTickerProviderStateMixin {
                         padding: EdgeInsets.fromLTRB(1, (_selectedPage == thisPage.number ? 10 : 12), 1, 0),
                         duration: Duration(milliseconds: 150),
                         height: _selectedPage == thisPage.number ? 40 : 34,
-                        width: MediaQuery.of(context).size.width / 4,
+                        width: MediaQuery.of(context).size.width / widget.pages.length,
                         child : FittedBox(
                           fit: BoxFit.fitHeight,
                           child: Icon(thisPage.icon),
